@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:trh="http://myfaces.apache.org/trinidad/html"
+	xmlns:tr="http://myfaces.apache.org/trinidad">
+	<jsp:directive.page contentType="text/html;charset=utf-8" />
+	<f:view>
+		<tr:document title="Parkinson Disease Detector">
+			<h3>Parkinson disease detector</h3>
+			<p>Please fill fields in the form below and send to analyze by clicking "Submit"</p>
+			<tr:form usesUpload="true">
+				<table>
+					<tr>
+						<td><h:outputLabel value="Age"></h:outputLabel></td>
+						<td><h:inputText value="#{patientBean.age}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Sex"></h:outputLabel></td>
+						<td><h:inputText value="#{patientBean.sex}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Personal number"></h:outputLabel></td>
+						<td><h:inputText value="#{patientBean.personalNum}"></h:inputText></td>
+					</tr>
+					<tr>
+						<td><h:outputLabel value="Voice file"></h:outputLabel></td>
+						<td><tr:inputFile value="#{fmBean.file}" /></td>
+						<td><tr:commandButton text="Sync"
+								action="#{fmBean.doUpload}" /></td>
+					</tr>
+				</table>
+				<h:commandButton value="Submit" action="webexresponse"></h:commandButton>
+			</tr:form>
+		</tr:document>
+	</f:view>
+</jsp:root>
