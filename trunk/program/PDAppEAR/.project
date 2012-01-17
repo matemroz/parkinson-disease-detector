@@ -5,7 +5,7 @@
 	<projects>
 		<project>PDDomain</project>
 		<project>PDValidator</project>
-		<project>PDWeb</project>
+		<project>PDWebApp</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
