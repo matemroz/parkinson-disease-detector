@@ -14,8 +14,8 @@
         <dependent-module archiveName="db2jcc.jar" deploy-path="/lib" handle="module:/classpath/lib/C:/Users/mateusz/Documents/Studia/inz/inzWorkspace/DB2JdbcLibs/src/db2jcc.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="PDWeb.war" deploy-path="/" handle="module:/resource/PDWeb/PDWeb">
-            <dependent-object>Module_1326413013660</dependent-object>
+        <dependent-module archiveName="PDWebApp.war" deploy-path="/" handle="module:/resource/PDWebApp/PDWebApp">
+            <dependent-object>Module_1326619780185</dependent-object>
             <dependency-type>uses</dependency-type>
         </dependent-module>
     </wb-module>
