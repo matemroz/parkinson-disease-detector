@@ -5,8 +5,6 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
-@ManagedBean(name="medExaminationBean")
-@SessionScoped
 public class MedExamination implements Serializable{
 
 	private static final long serialVersionUID = 5436431624056441238L;

@@ -8,10 +8,16 @@
 </head>
 <body>
 	<h1>Formularz detekcji choroby Parkinsona</h1>
-    <form action="form2Servlet" method="POST">
+    <form action="form2Servlet" method="POST" enctype='multipart/form-data'>
         Numer Pesel: <input type="text" name="personalNum" size="11"><br>
-        Plik z dźwiękiem: <input type="file" name="voiceFile"><br>
-        <br><br>
+        Płeć: <select name="sex">
+			<option value="-1" selected>(proszę wybrać:)</option>
+			<option value="0">Mężczyzna</option>
+			<option value="1">Kobieta</option>
+		</select><br>
+        Wiek: <input type="text" name="age" size="3"><br>
+        Plik z dźwiękiem: <input type="file" name="voiceFile"> 
+        <br><br><br>
         <input type="submit" value="Analizuj">
     </form>
     <br><br>
