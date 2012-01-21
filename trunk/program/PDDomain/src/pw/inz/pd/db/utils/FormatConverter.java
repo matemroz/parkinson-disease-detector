@@ -18,8 +18,4 @@ public class FormatConverter {
 		System.out.println(output);
 		return output;
 	}
-	
-	public static void main (String[] args){
-		FormatConverter.createTimeStamp();
-	}
 }

@@ -1,12 +1,7 @@
 package pw.inz.pd.domain;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
 import java.io.Serializable;
 
-@ManagedBean(name="patientBean")
-@SessionScoped
 public class Patient implements Serializable{
 	
 	private static final long serialVersionUID = -4967710614033489718L;
