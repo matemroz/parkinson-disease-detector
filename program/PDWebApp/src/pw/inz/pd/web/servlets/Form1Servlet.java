@@ -26,8 +26,8 @@ import pw.inz.pd.util.NNAnalyzer;
 import pw.inz.pd.util.VoiceAnalyzer;
 import pw.inz.pd.web.util.MultipartMap;
 
-@WebServlet(urlPatterns = { "C:\\pd_analyzer\\uploaded_voices" })
-@MultipartConfig(location = "C:\\pd_analyzer\\uploaded_voices", maxFileSize = 10485760L)
+@WebServlet(name="Form1Servlet", urlPatterns="/form1Servlet", asyncSupported=true)
+@MultipartConfig(location = "C:\\pd_analyzer\\uploaded_voices", fileSizeThreshold=1024*1024, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
 public class Form1Servlet extends HttpServlet {
 
 	/**
