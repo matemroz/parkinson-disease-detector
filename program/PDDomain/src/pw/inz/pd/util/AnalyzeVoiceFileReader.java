@@ -11,7 +11,7 @@ public class AnalyzeVoiceFileReader {
 	private File analyzedVoiceFile;
 	private HashMap<String, String> voiceParamsMapResult;
 	public static final String PARSE_DELIMITER = "[	]";
-	public static final int PD_VARIABLES_AMOUNT = 5;
+	public static final int PD_VARIABLES_AMOUNT = 6;
 	
 	public AnalyzeVoiceFileReader(File analyzedVoiceFile) {
 		this.analyzedVoiceFile = analyzedVoiceFile;
@@ -32,6 +32,7 @@ public class AnalyzeVoiceFileReader {
 			voiceParamsMapResult.put("shimmer_apq5", voiceParamsResult[2]);
 			voiceParamsMapResult.put("shimmer_dda", voiceParamsResult[3]);
 			voiceParamsMapResult.put("hnr", voiceParamsResult[4]);
+			voiceParamsMapResult.put("nhr", voiceParamsResult[5]);
 		}
 	}
 

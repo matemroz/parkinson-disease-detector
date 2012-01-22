@@ -66,6 +66,7 @@ public class Form1Servlet extends HttpServlet {
 								String shimmer_apq5 = paramsVoiceMap.get("shimmer_apq5");
 								String shimmer_dda = paramsVoiceMap.get("shimmer_dda");
 								String hnr = paramsVoiceMap.get("hnr");
+								String nhr = paramsVoiceMap.get("nhr");
 								
 								System.out.println(paramsVoiceMap.get("jitter_ddp"));
 								System.out.println(paramsVoiceMap.get("shimmer_apq3"));
@@ -78,7 +79,12 @@ public class Form1Servlet extends HttpServlet {
 								patient.setPersonalNum(personalNum);
 								patient.setAge(0); 
 								patient.setSex(-1); 
-								PatientDAO pDAO = new DB2PatientDAO(); pDAO.addPatient(patient);
+					
+								PatientDAO pDAO = new DB2PatientDAO(); 
+								if(!pDAO.isExistPatient(patient))
+									pDAO.addPatient(patient);
+								else
+									System.out.println("Pacjent znajduje się już w bazie");
 								 
 								MedExamination medEx = new MedExamination(); 
 								medEx.setHnr(Double.parseDouble(hnr)); 
@@ -93,7 +99,7 @@ public class Form1Servlet extends HttpServlet {
 								
 								String neuralNetworkCmd = "C:\\pd_analyzer\\sn\\nn_no_age_sex-1.exe " + 
 										jitter_ddp + " " + shimmer_apq3 + " " + shimmer_apq5 + " "  + shimmer_dda 
-										+ " " +hnr;
+										+ " " +hnr + " " + nhr;
 								String commandNNOutput = ExtProgRunCmd.run(neuralNetworkCmd);
 								response.setContentType("text/html");
 								if(commandNNOutput != "")
