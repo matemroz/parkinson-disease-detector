@@ -6,26 +6,16 @@
 	<display-name>PdWebApp</display-name>
 
 	<servlet>
-		<display-name>form1Servlet</display-name>
-		<servlet-name>form1Servlet</servlet-name>
-		<servlet-class>pw.inz.pd.web.servlets.Form1Servlet</servlet-class>
+		<display-name>pDDetectorFormServlet</display-name>
+		<servlet-name>pDDetectorFormServlet</servlet-name>
+		<servlet-class>pw.inz.pd.web.servlets.PDDetectorFormServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>form1Servlet</servlet-name>
-		<url-pattern>/form1Servlet</url-pattern>
-	</servlet-mapping>
-
-	<servlet>
-		<display-name>form2Servlet</display-name>
-		<servlet-name>form2Servlet</servlet-name>
-		<servlet-class>pw.inz.pd.web.servlets.Form2Servlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>form2Servlet</servlet-name>
-		<url-pattern>/form2Servlet</url-pattern>
+		<servlet-name>pDDetectorFormServlet</servlet-name>
+		<url-pattern>/pDDetectorFormServlet</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>WebEXForm.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
