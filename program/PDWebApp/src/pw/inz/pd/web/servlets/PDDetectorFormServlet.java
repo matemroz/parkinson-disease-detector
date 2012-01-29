@@ -26,9 +26,9 @@ import pw.inz.pd.util.NNAnalyzer;
 import pw.inz.pd.util.VoiceAnalyzer;
 import pw.inz.pd.web.util.MultipartMap;
 
-@WebServlet(name="Form1Servlet", urlPatterns="/form1Servlet", asyncSupported=true)
-@MultipartConfig(location = "C:\\pd_analyzer\\uploaded_voices", fileSizeThreshold=1024*1024, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
-public class Form1Servlet extends HttpServlet {
+@WebServlet(name="PDDetectorFormServlet", urlPatterns="/pDDetectorFormServlet", asyncSupported=true)
+@MultipartConfig(location = "C:\\pd_analyzer\\uploaded_voices", fileSizeThreshold=1024*1024*2, maxFileSize=1024*1024*5, maxRequestSize=1024*1024*5*5)
+public class PDDetectorFormServlet extends HttpServlet {
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class Form1Servlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
-		RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/WebEXForm1.jsp");
+		RequestDispatcher rd = sc.getRequestDispatcher("/WEB-INF/WebEXForm.jsp");
 		rd.forward(req, resp);
 	}
 
@@ -49,9 +49,11 @@ public class Form1Servlet extends HttpServlet {
 		MultipartMap map = new MultipartMap(request, this);
 		if (map != null) {
 			String personalNum = map.getParameter("personalNum");
+			String age = map.getParameter("age");
+			String sex = map.getParameter("sex");
 			File voiceFile = map.getFile("voiceFile");
-			if (personalNum != null && voiceFile != null) {
-				if (personalNum != "" && voiceFile.exists()) {
+			if (age != null && sex != null && personalNum != null && voiceFile != null) {
+				if (age != "" && sex != "" && personalNum != "" && voiceFile.exists()) {
 					VoiceAnalyzer va = new VoiceAnalyzer(voiceFile);
 					if (va != null) {
 						va.makeVoiceAnalyze();
@@ -77,10 +79,10 @@ public class Form1Servlet extends HttpServlet {
 								 
 								Patient patient = new Patient(); 
 								patient.setPersonalNum(personalNum);
-								patient.setAge(0); 
-								patient.setSex(-1); 
-					
+								patient.setAge(Integer.parseInt(age)); 
+								patient.setSex(Integer.parseInt(sex)); 
 								PatientDAO pDAO = new DB2PatientDAO(); 
+
 								if(!pDAO.isExistPatient(patient))
 									pDAO.addPatient(patient);
 								else
@@ -97,14 +99,16 @@ public class Form1Servlet extends HttpServlet {
 								MedExaminationDAO medExDAO = new DB2MedExaminationDAO(); 
 								medExDAO.addMedExamination(medEx);
 								
-								String neuralNetworkCmd = "C:\\pd_analyzer\\sn\\nn_no_age_sex-1.exe " + 
+								String neuralNetworkCmd = "C:\\pd_analyzer\\sn\\sn.exe " + 
 										jitter_ddp + " " + shimmer_apq3 + " " + shimmer_apq5 + " "  + shimmer_dda 
 										+ " " +hnr + " " + nhr;
 								String commandNNOutput = ExtProgRunCmd.run(neuralNetworkCmd);
 								response.setContentType("text/html");
-								if(commandNNOutput != "")
-									writer.write("<h3>Stan badanego: <b>" + NNAnalyzer.getPatientStatus(
-											commandNNOutput) + "</b></h3>");
+								if(commandNNOutput != ""){
+									String medExStatus =  NNAnalyzer.getPatientStatus(
+											commandNNOutput);
+									writer.write("<h3>Stan badanego: <b>" + medExStatus + "</b></h3>");
+								}
 								else
 									writer.write("Nie można określić statusu badanego");
 							} else
