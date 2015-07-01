@@ -1,0 +1,1 @@
+ANN Network and voice analysis for detecting Parkinson disease - engineering work
